@@ -1,0 +1,229 @@
+/* ページ全体の設定 */
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  background-color: #fde6ca;
+  color: #4a4a4a;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* 各画面のコンテナを中央にまとめる */
+#startScreen,
+#questionScreen,
+#finishScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 720px;
+}
+
+/* アーチ状タイトルのまわりの余白 */
+.logo-title {
+  margin: 0 0 16px 0;
+  width: 100%;
+  max-width: 680px;
+}
+
+/* SVG（文字）のフォント指定 */
+.arch-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-family: "M PLUS Rounded 1c", "BIZ UDPGothic", "Hiragino Maru Gothic ProN", sans-serif;
+}
+
+/* スマホでも読みやすい段落デザイン */
+p {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.6;
+  color: #3b3b3b;
+  margin: 10px 0;
+}
+
+/* ボタン共通デザイン */
+button {
+  display: block;
+  margin: 24px auto 0 auto;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #e07a5f;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 36px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(224, 122, 95, 0.3);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* トップ画面の開始ボタンだけふんわりパルスアニメーション */
+#startScreen button {
+  animation: pulseButton 2s infinite ease-in-out;
+}
+
+@keyframes pulseButton {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 3px 8px rgba(224, 122, 95, 0.3);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 6px 16px rgba(224, 122, 95, 0.45);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 3px 8px rgba(224, 122, 95, 0.3);
+  }
+}
+
+button:hover {
+  background-color: #d2694e;
+}
+
+button:active {
+  transform: translateY(1px) !important;
+}
+
+/* 見出し */
+h2 {
+  font-size: 24px;
+  color: #b84a32;
+  margin-bottom: 12px;
+}
+
+/* 終了画面 */
+#finishScreen h2 {
+  font-size: 32px;
+  color: #b84a32;
+  margin-bottom: 16px;
+}
+
+#finishScreen p {
+  font-size: 20px;
+  color: #3b3b3b;
+  margin: 8px 0;
+}
+
+/* 問題画像 */
+#quizImage {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 16px auto 24px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 4px solid #ffffff;
+  box-sizing: border-box;
+}
+
+/* 判定メッセージ */
+#positionResult {
+  font-size: 18px;
+  font-weight: bold;
+  color: #b84a32;
+  margin: 16px 0;
+}
+
+/* ゆったり上品に現れるポップインアニメーション */
+.pop-in {
+  animation: popInAnimation 0.65s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes popInAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+
+/* ================================
+   スマートフォンサイズの表示設定
+================================ */
+
+/* パソコンで見たとき */
+@media screen and (min-width: 600px) {
+
+  html {
+    background-color: #e9e9e9;
+  }
+
+  body {
+    width: 390px;
+    min-height: 844px;
+    margin: 20px auto;
+    border-radius: 28px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+
+}
+
+/* スマートフォンで見たとき */
+@media screen and (max-width: 599px) {
+
+  body {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 16px;
+  }
+
+}
+
+#positionResult {
+  white-space: pre-line;
+}
+
+
+/* 1行目：〇 正解！ */
+.correct-title {
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  color: #b84a32;
+  margin-bottom: 12px;
+}
+
+/* 2行目：解説文 */
+.correct-explanation {
+  display: block;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4a4a4a;
+  white-space: pre-line;
+}
+
+/* 正解後の別角度写真 */
+#extraPhoto {
+  width: 100%;
+  margin-top: 20px;
+}
+
+#extraImage {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  margin: 12px auto;
+  border: 4px solid white;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+#extraCaption {
+  font-size: 16px;
+  color: #4a4a4a;
+}

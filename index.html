@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>てくてく安全クイズ</title>
+
+  <!-- 丸みのある可愛いフォント（Google Fonts）を読み込み -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap" rel="stylesheet">
+
+  <!-- デザイン用のファイル -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ① トップ画面 -->
+  <div id="startScreen">
+    <!-- アーチ状のロゴタイトル -->
+    <h1 class="logo-title" aria-label="てくてく安全クイズ">
+      <svg viewBox="0 0 800 220" class="arch-svg">
+        <defs>
+          <!-- 文字が沿っていく見えない曲線 -->
+          <path id="archPath" d="M 50,185 Q 400,65 750,185" />
+          <!-- 文字の影（ドロップシャドウ） -->
+          <filter id="logoShadow" x="-10%" y="-10%" width="120%" height="130%">
+            <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity="0.18" />
+          </filter>
+        </defs>
+
+        <g filter="url(#logoShadow)">
+          <!-- ① 外側の白いフチ -->
+          <text font-size="84" font-weight="900" text-anchor="middle"
+                stroke="#ffffff" stroke-width="20" stroke-linejoin="round" stroke-linecap="round">
+            <textPath href="#archPath" startOffset="50%">てくてく安全クイズ</textPath>
+          </text>
+
+          <!-- ② 内側のテラコッタ色の文字 -->
+          <text font-size="84" font-weight="900" text-anchor="middle"
+                fill="#e07a5f" stroke="#e07a5f" stroke-width="4" stroke-linejoin="round">
+            <textPath href="#archPath" startOffset="50%">てくてく安全クイズ</textPath>
+          </text>
+        </g>
+      </svg>
+    </h1>
+
+    <p>長町の歩く道、どこに注意する？</p>
+    <p>大学生と地域住民で探し見つけました。</p>
+    <p>3つの写真を見て、クイズに答えよう！</p>
+
+    <button type="button" onclick="startQuiz()">
+      クイズをはじめる
+    </button>
+  </div>
+
+  <!-- ② 問題画面 -->
+  <div id="questionScreen" style="display: none;">
+    <h2 id="questionTitle"></h2>
+    <p id="questionText"></p>
+
+    <img
+      id="quizImage"
+      alt="街の写真"
+      onclick="checkPosition(event)"
+    >
+
+    <p id="positionResult"></p>
+
+<div id="extraPhoto" style="display: none;">
+  <p>別の角度から見てみよう！</p>
+  <img id="extraImage" alt="別の角度から見た道路">
+  <p id="extraCaption"></p>
+</div>
+
+
+    <button
+      type="button"
+      id="nextButton"
+      style="display: none;"
+      onclick="nextQuestion()">
+      次の問題へ
+    </button>
+  </div>
+
+  <!-- ③ 終了画面 -->
+  <div id="finishScreen" style="display: none;">
+    <h2>全問正解です！お疲れ様でした！</h2>
+    <p>あなたの地域に、同じような場所はありますか？</p>
+    <p>地域を見直し、安全な生活を送りましょう</p>
+
+    <button type="button" onclick="goToStart()">
+  最初のページに戻る
+</button>
+
+<button type="button"
+  onclick="window.open('https://sites.google.com/view/volunteer-craft/%E3%83%9B%E3%83%BC%E3%83%A0', '_blank', 'noopener,noreferrer')">
+  私たちの活動をもっと知る ↗
+</button>
+  </div>
+
+    <!-- クラッカー演出用ライブラリ -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- クイズの動作用ファイル -->
+  <script src="quiz.js"></script>
+
+</body>
+</html>
